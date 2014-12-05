@@ -1,0 +1,277 @@
+" maybe useful for the future - pathogen plugin management
+" execute pathogen#infect()
+
+" Enable filetype plugin
+filetype plugin on
+filetype indent on
+
+" syntax recognition and highlight
+syntax enable
+
+" show line number
+set nu!
+
+" enble word wrap
+set wrap
+
+" enable autoindent and indent related feature
+set autoindent
+set smartindent
+
+" set to auto read when a file is changed from the outside
+set autoread
+
+" set tab option for programming guidance compliant
+set smarttab
+set shiftwidth=4
+set expandtab
+set tabstop=4
+
+" show hidden character
+set listchars=tab:>-,trail:~,extends:>,precedes:<
+" if needed to show end of line then add ,eol:$
+
+" set 7 line to the cursor - when moving vertically using j.k
+set so=7
+
+set colorcolumn=80
+
+set list
+
+" always shoe current position
+set ruler
+
+" set correct behavior of backspace
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" set color scheme
+colorscheme slate
+
+" set search opetion with highlight
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" for regex turn magic on
+set magic
+
+" do not redraw whiel executing macros for perfoemance
+set lazyredraw
+
+" how matching brackets when cursor is on
+set showmatch
+
+" set font
+set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+
+" set height of the command bar
+set cmdheight=1
+
+" set default shell
+set shell=/bin/bash\ -i
+
+" turn backup off since most of the code is in repo dir
+set nobackup
+set nowb
+set noswapfile
+
+" high light the current line
+set cursorline
+set cursorcolumn
+hi CursorLine   cterm=underline  guibg=black
+hi CursorColumn cterm=underline guibg=black
+" nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+" always set status line
+set laststatus=2
+
+" highlight changed line
+if !exists(":DiffOrig")
+    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+          \ | wincmd p | diffthis
+endif
+
+" taglist
+" let g:showfuncctagsbin = '/bin/ctags58/ctags'
+let g:Tlist_Ctags_Cmd='/usr/bin/ctags'
+autocmd CursorMovedI * silent! TlistHighlightTag
+" nmap <F6> :TlistToggle<CR>
+" imap <F6> <ESC>:TlistToggle<CR>a
+let Tlist_Inc_Winwidth=0
+let Tlist_WinWidth=50
+
+" tagbar
+let g:tagbar_ctags_bin='/users/haoc2/local/bin/ctags'
+nmap <F6> :TagbarToggle<CR>
+imap <F6> <ESC>:TagbarToggle<CR>a
+
+" power line
+let g:Powerline_stl_path_style = 'full'
+let g:Powerline_symbols = 'compatible'
+
+" save
+nmap <F2> :w<CR>
+imap <F2> <ESC>:w<CR>a
+
+nmap <F7> :NERDTreeToggle<CR>
+imap <F7> <ESC>:NERDTreeToggle<CR>a
+nmap <F5> :CCTreeLoadDB<CR>
+imap <F5> <ESC>:CCTreeLoadDB<CR>a
+
+" Tabbar plugin
+hi Tb_VisibleNormal guifg=pink
+hi Tb_Changed guifg=yellow
+" let g:Tb_UseSingleClick = 1
+nmap <F4> :TbToggle<CR>
+imap <F4> <ESC>:TbToggle<CR>a
+
+" switch buffer
+map gn :bn<cr>
+map gp :bp<cr>
+
+" CTRL-X and SHIFT-Del are Cut
+map <C-X> "+x
+map <S-Del> "+x
+
+" CTRL-C and CTRL-Insert are Copy
+map <C-C> "+y
+map <C-Insert> "+y
+
+" CTRL-V and SHIFT-Insert are Paste
+map <C-V>       "+p
+map <S-Insert>          "+p
+
+cmap <C-V>      <C-R>+
+cmap <S-Insert>         <C-R>+
+
+"tab size
+set ts=4
+
+"indentation width
+set sw=4
+
+"c like indentation
+set cindent
+
+
+"autocomplete menu
+set wildmenu
+set wildmode=list:longest,full
+
+set mouse=a
+" if &term =~ "xterm" || &term =~ "screen"
+"     " as of March 2013, this works:
+"     set ttymouse=xterm2
+"     "
+"     "         " previously, I found that ttymouse was getting
+"     "         reset, so had
+"     "             " to reapply it via an autocmd like this:
+"     autocmd VimEnter,FocusGained,BufEnter * set ttymouse=xterm2
+" endif
+
+"compiling using F3
+"map <F3> : call CompileGcc()<CR>
+"func! CompileGcc()
+"  exec "w"
+"  exec "!gcc % -o %<"
+"endfunc
+
+"compile and execute using F9
+"map <F9> :call CompileRunGcc()<CR>
+"func! CompileRunGcc()
+"  exec "w"
+"  exec "!gcc % -o %<"
+"  exec "! ./%<"
+"endfunc
+
+"autocomplete Parenthesis
+"When you type an open brace, this will automatically
+"insert a closing brace on the same line, after the cursor.
+"If you quickly hit Enter after the open brace, (to begin
+"a code block), the closing brace will be inserted on the
+"line below the cursor. If you quickly press the open brace
+"key again after the open brace, Vim won't insert anything extra,
+" you'll just get a single open brace. Finally, if you quickly
+"type an open and close brace, Vim will not do anything special.
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {}     {}
+
+inoremap (      ()<Left>
+inoremap (<CR>  (<CR>)<Esc>O
+inoremap ()     ()
+
+inoremap [      []<Left>
+inoremap [<CR>  [<CR>]<Esc>O
+inoremap []     []
+
+"mapping some more keys ::
+
+"CTRL-X is cut
+vnoremap <C-X> "+x
+
+"CTRL-C is copy
+vnoremap <C-C> "+y
+
+"CTRL-V is paste
+vnoremap <C-V> "+gP
+
+"to paste blockwise, uses paste.vim autoload script
+exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+
+" CTRL-A is Select all
+noremap <C-A> gggH<C-O>G
+inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-A> <C-C>gggH<C-O>G
+onoremap <C-A> <C-C>gggH<C-O>G
+snoremap <C-A> <C-C>gggH<C-O>G
+xnoremap <C-A> <C-C>ggVG
+
+" Use CTRL-K to do what CTRL-V used to do
+noremap <C-K>  <C-V>
+
+" window navigation using ALT + arrowsgcc
+" nmap <silent> <A-Up> :wincmd k<CR>
+" nmap <silent> <A-Down> :wincmd j<CR>
+" nmap <silent> <A-Left> :wincmd h<CR>
+" nmap <silent> <A-Right> :wincmd l<CR>
+
+" decrease message size
+set shortmess=a
+
+
+" tab management
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Specify the behavior when switching between buffers
+try
+    set switchbuf=useopen,usetab,newtab
+    set stal=2
+catch
+endtry
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
+" Remember info about open buffers on close
+set viminfo^=%
+
+" cscope setting use 64 bit ver
+set csprg=cscope-15.8a-p2-64
