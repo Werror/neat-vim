@@ -1,3 +1,6 @@
+" we need this first
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 set mouse+=a
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
