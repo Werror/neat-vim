@@ -1,46 +1,99 @@
-set nocompatible
-filetype off
+set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" Let Vundle manage Vundle
-Bundle 'haoc2/vundle'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
-" My Bundles
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'slim-template/vim-slim'
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" We could also add repositories with a ".git" extension
+Plugin 'scrooloose/nerdtree.git'
+" taglist for function names
+Plugin 'vim-scripts/taglist.vim'
+" we need cscope
+" Plugin 'vim-scripts/cscope.vim'
+" and cscope map
+Plugin 'chazy/cscope_maps'
+" we need cctree
+Plugin 'vim-scripts/CCTree'
+" auto complete
+Plugin 'vim-scripts/AutoComplPop'
+" c++ auto complete
+Plugin 'vim-scripts/OmniCppComplete'
+set nocp
+" switch between c/cpp and h files
+Plugin 'vim-scripts/a.vim'
+" coding plugin for c/c++
+Plugin 'vim-scripts/c.vim'
+" for vimshell
+Plugin 'shougo/vimproc'
+Plugin 'shougo/vimshell'
+" I need mini buffers
+Plugin 'fholgado/minibufexpl.vim'
+" try vterm for terminal access
+Plugin 'sollidsnake/vterm'
+" We need powerline
+Plugin 'Lokaltog/vim-powerline'
+set laststatus=2
+set nocompatible   " Disable vi-compatibility
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show Unicode glyphs
+set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
+" tComment
+Plugin 'tomtom/tcomment_vim'
+" better cpp highlighting
+Plugin 'octol/vim-cpp-enhanced-highlight'
+let g:cpp_class_scope_highlight=1
+let g:cpp_experimental_template_highlight=1
 
-filetype plugin indent on
 
-let mapleader=","
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
-color jellybeans
-
+syntax on
+set wrap
+set linebreak
+set nolist  " list disables linebreak
 set cursorline
 set expandtab
 set modelines=0
-set shiftwidth=2
 set clipboard=unnamed
 set synmaxcol=128
 set ttyscroll=10
 set encoding=utf-8
-set tabstop=2
-set nowrap
 set number
-set expandtab
 set nowritebackup
 set noswapfile
 set nobackup
@@ -59,59 +112,39 @@ autocmd BufWritePre *.slim :%s/\s\+$//e
 au BufNewFile * set noeol
 au BufRead,BufNewFile *.go set filetype=go
 
-" No show command
-autocmd VimEnter * set nosc
-
-" Quick ESC
-imap jj <ESC>
-
 " Jump to the next row on long lines
 map <Down> gj
 map <Up>   gk
 nnoremap j gj
 nnoremap k gk
 
-" format the entire file
-nmap <leader>fef ggVG=
-
-" Open new buffers
-nmap <leader>s<left>   :leftabove  vnew<cr>
-nmap <leader>s<right>  :rightbelow vnew<cr>
-nmap <leader>s<up>     :leftabove  new<cr>
-nmap <leader>s<down>   :rightbelow new<cr>
-
-" Tab between buffers
-noremap <tab> <c-w><c-w>
-
-" Switch between last two buffers
-nnoremap <leader><leader> <C-^>
-
-" Resize buffers
-if bufwinnr(1)
-  nmap Ä <C-W><<C-W><
-  nmap Ö <C-W>><C-W>>
-  nmap ö <C-W>-<C-W>-
-  nmap ä <C-W>+<C-W>+
-endif
-
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
-" Syntastic
-let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_ruby_exec = '~/.rvm/rubies/ruby-2.0.0-p0/bin/ruby'
+" set tab option for programming guidance compliant
+set smarttab
+set shiftwidth=4
+set expandtab
+set tabstop=4
 
-" CtrlP
-nnoremap <silent> t :CtrlP<cr>
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files = 600
-let g:ctrlp_max_depth = 5
+" show hidden character
+set listchars=tab:>-,trail:~,extends:>,precedes:<
+" if needed to show end of line then add ,eol:$
 
-" Go programming
-set rtp+=/usr/local/Cellar/go/1.0.3/misc/vim
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
+" Remember info about open buffers on close
+set viminfo^=%
 
-" Quit with :Q
-command -nargs=0 Quit :qa!
+" Add highlighting for function definition in C++
+function! EnhanceCppSyntax()
+    syn match cppFuncDef "::\~\?\zs\h\w*\ze([^)]*\()\s*\(const\)\?\)\?$"
+    hi def link cppFuncDef Special
+endfunction
+
+autocmd Syntax cpp call EnhanceCppSyntax()
+autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
