@@ -35,7 +35,7 @@ Plugin 'chazy/cscope_maps'
 " we need cctree
 Plugin 'vim-scripts/CCTree'
 let g:CCTreeDisplayMode=1 " use compact mode
-led g:CCTreeHiSymbol=1
+let g:CCTreeHiSymbol=1
 let g:CCTreeUseUTF8Symbols=0
 let g:CCTreeMinWidth=45
 " auto complete
