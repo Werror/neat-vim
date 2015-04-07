@@ -40,11 +40,14 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " NERDTree We could also add repositories with a ".git" extension
 Plugin 'scrooloose/nerdtree.git'
 
+" " I need mini buffers
+Plugin 'fholgado/minibufexpl.vim'
+
 " taglist for function names
 Plugin 'vim-scripts/taglist.vim'
 
 " we need cscope
-Plugin 'vim-scripts/cscope.vim'
+" Plugin 'vim-scripts/cscope.vim'
 
 " and cscope map
 Plugin 'chazy/cscope_maps'
@@ -56,28 +59,27 @@ let g:CCTreeHiSymbol=1
 let g:CCTreeUseUTF8Symbols=0
 let g:CCTreeMinWidth=45
 
-" auto complete
-" Plugin 'vim-scripts/AutoComplPop'
-
-" c++ auto complete
-" Plugin 'vim-scripts/OmniCppComplete'
-" set nocp
-
-" switch between c/cpp and h files
-Plugin 'vim-scripts/a.vim'
-
-" coding plugin for c/c++
-" Plugin 'vim-scripts/c.vim'
-
-" I need mini buffers
-Plugin 'fholgado/minibufexpl.vim'
-
-" We need powerline
+" " We need powerline
 Plugin 'Lokaltog/vim-powerline'
 set nocompatible   " Disable vi-compatibility
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
+
+" auto complete
+Plugin 'vim-scripts/AutoComplPop'
+
+" c++ auto complete
+Plugin 'vim-scripts/OmniCppComplete'
+set nocp
+
+" switch between c/cpp and h files
+Plugin 'vim-scripts/a.vim'
+
+" coding plugin for c/c++
+Plugin 'vim-scripts/c.vim'
+
+
 
 " tComment
 Plugin 'tomtom/tcomment_vim'
@@ -106,17 +108,16 @@ let g:clang_diagsopt = ''
 " ultisnips to auto complete code block
 " Plugin 'SirVer/ultisnips'
 
-" syntax checker
-Plugin 'terhechte/syntastic'
-" Show sidebar signs.
-let g:syntastic_enable_signs=1
-let g:syntastic_objc_config_file = '.clang_complete'
-
-" Status line configuration
-set statusline+=%#warningmsg#  " Add Error ruler.
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" nnoremap <silent> ` :Errors<CR>
+" " syntax checker
+" Plugin 'terhechte/syntastic'
+" " Show sidebar signs.
+" let g:syntastic_enable_signs=1
+" let g:syntastic_objc_config_file = '.clang_complete'
+" " Status line configuration
+" set statusline+=%#warningmsg#  " Add Error ruler.
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" " nnoremap <silent> ` :Errors<CR>
 
 " Vim for iOS
 " Plugin 'eraserhd/vim-ios'
@@ -131,9 +132,9 @@ Plugin 'codegram/vim-codereview'
 Plugin 'junkblocker/patchreview-vim'
 
 " better colors
-" Plugin 'nanotech/jellybeans.vim'
-" Plugin 'morhetz/gruvbox'
-" Plugin 'vim-scripts/BusyBee'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'vim-scripts/BusyBee'
 Plugin 'tpope/vim-vividchalk'
 
 " All of your Plugins must be added before the following line
@@ -242,7 +243,7 @@ autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
 set guicursor+=n-v-c:blinkon0
 set guicursor+=i:blinkwait10
 set cursorcolumn
-colorscheme vividchalk
+colorscheme gruvbox
 
 
 " Highlight while typing search word
