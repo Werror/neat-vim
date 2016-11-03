@@ -44,7 +44,7 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'fholgado/minibufexpl.vim'
 
 " taglist for function names
-Plugin 'vim-scripts/taglist.vim'
+" Plugin 'vim-scripts/taglist.vim'
 
 " use gnu global, gtags
 Plugin 'vim-scripts/gtags.vim'
@@ -56,7 +56,6 @@ if filereadable("GTAGS")
     set cscopeprg=gtags-cscope
     cs add GTAGS
 endif
-
 
 " recognize gradle as a groovy
 Plugin 'tfnico/vim-gradle'
@@ -82,11 +81,11 @@ set encoding=utf-8 " Necessary to show Unicode glyphs
 set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
 
 " auto complete
-Plugin 'vim-scripts/AutoComplPop'
+" Plugin 'vim-scripts/AutoComplPop'
 
 " c++ auto complete
-Plugin 'vim-scripts/OmniCppComplete'
-set nocp
+" Plugin 'vim-scripts/OmniCppComplete'
+" set nocp
 
 " switch between c/cpp and h files
 Plugin 'vim-scripts/a.vim'
@@ -109,10 +108,10 @@ highlight SignColumn ctermfg=white
 
 " clang auto completion and validation
 " Clang complete
-Plugin 'justmao945/vim-clang'
-let g:clang_vim_exec = 'vim'
-let g:clang_sh_exec = 'bash'
-let g:clang_diagsopt = ''
+" Plugin 'justmao945/vim-clang'
+" let g:clang_vim_exec = 'vim'
+" let g:clang_sh_exec = 'bash'
+" let g:clang_diagsopt = ''
 
 " clang complete
 " Plugin 'myint/clang-complete'
@@ -141,7 +140,10 @@ let g:clang_diagsopt = ''
 " Plugin 'vim-scripts/FuzzyFinder'
 
 " better fuzzy finder
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+" Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+
+" best fuzzy finder
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " for code review pull request from GitHub
 Plugin 'codegram/vim-codereview'
@@ -166,6 +168,10 @@ Plugin 'tpope/vim-vividchalk'
 Plugin 'queyenth/oxeded.vim'
 Plugin 'widatama/vim-phoenix'
 Plugin 'altercation/vim-colors-solarized'
+
+
+" trying Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -224,7 +230,9 @@ nnoremap k gk
 
 " NERDTree
 let NERDTreeHighlightCursorline=1
+" Open NERDTree when vim start
 autocmd VimEnter * NERDTreeFind
+" put cursor in another window
 autocmd VimEnter * wincmd p
 
 " Check if NERDTree is open or active
