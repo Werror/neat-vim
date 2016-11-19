@@ -186,6 +186,8 @@ nnoremap k gk
 
 " NERDTree
 let NERDTreeHighlightCursorline=1
+" Press "I" to toggle the visvility of the hidden files
+" let NERDTreeShowHidden=1
 " Open NERDTree when vim start
 autocmd VimEnter * NERDTreeFind
 " put cursor in another window
