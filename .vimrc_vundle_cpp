@@ -98,8 +98,13 @@ Plugin 'airblade/vim-gitgutter'
 let g:gitgutter_override_sign_column_highlight=0
 highlight SignColumn ctermfg=white
 
-" trying Plugin 'Valloric/YouCompleteMe'
-Plugin 'Valloric/YouCompleteMe'
+if has('python')
+    " trying Plugin 'Valloric/YouCompleteMe'
+    Plugin 'Valloric/YouCompleteMe'
+else
+    " without python we use simple auto completion
+    Plugin 'Shougo/neocomplcache.vim'
+endif
 
 " best fuzzy finder
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -241,11 +246,15 @@ autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
 " Cursor related config
 if &term =~ '^screen' 
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+    if (v:version == 704 && has('patch687')) || v:version > 800
+        let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+    endif
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+    if (v:version == 704 && has('patch687')) || v:version > 800
+        let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+    endif
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 set cursorline
