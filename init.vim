@@ -80,3 +80,8 @@ call plug#end()
 colorscheme vividchalk
 set number
 set relativenumber
+
+" show hidden character
+set list
+set listchars=tab:>-,trail:~,extends:>,precedes:<
+" if needed to show end of line then add ,eol:$
